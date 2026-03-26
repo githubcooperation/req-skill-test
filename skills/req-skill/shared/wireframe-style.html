@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280">
+  <title>线框图参考样式 - 列表页示例</title>
+  <style>
+    /* ========================================
+       WIREFRAME REFERENCE STYLE
+       灰度低保真线框图 — 参考样式表
+       req-wireframe 生成每个 HTML 时应内联此 CSS，
+       并按下方 CSS 变量保持风格统一。
+       ======================================== */
+
+    :root {
+      --bg:               #f0f0f0;
+      --surface:          #ffffff;
+      --surface-alt:      #f9f9f9;
+      --border:           #cccccc;
+      --border-strong:    #aaaaaa;
+      --border-dashed:    #bbbbbb;
+      --text-primary:     #333333;
+      --text-secondary:   #666666;
+      --text-placeholder: #aaaaaa;
+      --text-label:       #555555;
+      --btn-primary-bg:   #555555;
+      --btn-primary-txt:  #ffffff;
+      --btn-secondary-bg: #eeeeee;
+      --btn-secondary-txt:#444444;
+      --btn-danger-bg:    #888888;
+      --tag-bg:           #e4e4e4;
+      --tag-border:       #c0c0c0;
+      --tag-success-bg:   #d8d8d8;
+      --tag-warning-bg:   #e8e8e8;
+      --nav-bg:           #444444;
+      --nav-txt:          #eeeeee;
+      --nav-active:       #666666;
+      --sidebar-active:   #e8e8e8;
+      --header-bg:        #eeeeee;
+      --row-hover:        #f5f5f5;
+      --shadow-sm:        0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md:        0 2px 8px rgba(0,0,0,0.12);
+      --radius:           4px;
+      --radius-lg:        8px;
+      --font: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    /* ---- 浏览器顶栏模拟 ---- */
+    .browser-bar {
+      background: #d8d8d8;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      border-bottom: 1px solid #c0c0c0;
+    }
+    .browser-dots { display: flex; gap: 5px; }
+    .browser-dots span {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #b0b0b0; border: 1px solid #999;
+    }
+    .browser-url {
+      flex: 1;
+      background: #ebebeb;
+      border: 1px solid #bbb;
+      border-radius: 12px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ---- 顶部导航栏 ---- */
+    .topnav {
+      background: var(--nav-bg);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+    .topnav-logo {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--nav-txt);
+      padding-right: 32px;
+      border-right: 1px solid #666;
+      margin-right: 24px;
+      letter-spacing: 0.5px;
+    }
+    .topnav-links { display: flex; flex: 1; }
+    .topnav-link {
+      color: var(--nav-txt);
+      padding: 0 16px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    .topnav-link.active { background: var(--nav-active); opacity: 1; }
+    .topnav-user {
+      color: var(--nav-txt);
+      font-size: 13px;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .topnav-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #777;
+      border: 1px solid #999;
+    }
+
+    /* ---- 内容区布局 ---- */
+    .content-wrapper {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 16px;
+      gap: 16px;
+    }
+
+    /* ---- 侧边栏 ---- */
+    .sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px 0;
+      height: fit-content;
+      box-shadow: var(--shadow-sm);
+    }
+    .sidebar-section-title {
+      font-size: 11px;
+      color: var(--text-placeholder);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 8px 16px 4px;
+    }
+    .sidebar-item {
+      padding: 9px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-item.active {
+      background: var(--sidebar-active);
+      color: var(--text-primary);
+      font-weight: 500;
+      border-left: 3px solid var(--text-primary);
+    }
+    .sidebar-item .icon {
+      width: 14px; height: 14px;
+      background: var(--border);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+
+    /* ---- 主内容区 ---- */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ---- 面包屑 ---- */
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb-sep { color: var(--text-placeholder); }
+    .breadcrumb-current { color: var(--text-primary); font-weight: 500; }
+
+    /* ---- 页面标题区 ---- */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .page-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .page-title-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .action-bar { display: flex; gap: 8px; align-items: center; }
+
+    /* ---- 按钮 ---- */
+    .btn {
+      height: 32px;
+      padding: 0 16px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      cursor: default;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid transparent;
+    }
+    .btn-primary  { background: var(--btn-primary-bg);  color: var(--btn-primary-txt);  border-color: var(--btn-primary-bg); }
+    .btn-secondary{ background: var(--btn-secondary-bg);color: var(--btn-secondary-txt);border-color: var(--border); }
+    .btn-danger   { background: var(--btn-danger-bg);   color: #fff; }
+
+    /* ---- 卡片容器 ---- */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ---- 搜索/筛选栏 ---- */
+    .filter-bar {
+      padding: 14px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-label { font-size: 12px; color: var(--text-label); white-space: nowrap; }
+    .filter-group { display: flex; align-items: center; gap: 6px; }
+    .input {
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0 10px;
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--surface);
+    }
+    .input::placeholder { color: var(--text-placeholder); }
+    .input-search { width: 180px; }
+    .input-date   { width: 120px; }
+    .select {
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0 8px;
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--surface);
+      width: 120px;
+    }
+    .date-range { display: flex; align-items: center; gap: 6px; color: var(--text-placeholder); font-size: 12px; }
+
+    /* ---- Tab 切换 ---- */
+    .tabs {
+      display: flex;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab {
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: default;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab.active {
+      color: var(--text-primary);
+      font-weight: 500;
+      border-bottom-color: var(--text-primary);
+    }
+    .tab-badge {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--text-secondary);
+      font-size: 11px;
+      border-radius: 10px;
+      padding: 0 6px;
+      margin-left: 4px;
+      line-height: 16px;
+    }
+
+    /* ---- 数据表格 ---- */
+    .data-table-wrapper { overflow-x: auto; }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .data-table thead th {
+      background: var(--header-bg);
+      color: var(--text-label);
+      font-weight: 500;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .data-table tbody tr { border-bottom: 1px solid var(--border); }
+    .data-table tbody tr:last-child { border-bottom: none; }
+    .data-table tbody tr:nth-child(even) { background: var(--surface-alt); }
+    .data-table td { padding: 10px 14px; vertical-align: middle; }
+    .checkbox-cell { width: 40px; text-align: center; }
+    .checkbox {
+      width: 14px; height: 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      display: inline-block;
+      background: var(--surface);
+    }
+    .table-link {
+      color: var(--text-secondary);
+      text-decoration: underline;
+      margin-right: 10px;
+      cursor: default;
+      font-size: 12px;
+    }
+
+    /* ---- 状态标签 ---- */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      border: 1px solid var(--tag-border);
+      background: var(--tag-bg);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .tag-success { background: var(--tag-success-bg); }
+    .tag-pending { background: var(--tag-warning-bg); }
+
+    /* ---- 分页 ---- */
+    .pagination {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-top: 1px solid var(--border);
+    }
+    .pagination-info { font-size: 12px; color: var(--text-secondary); margin-right: 8px; }
+    .page-btn {
+      min-width: 28px; height: 28px;
+      padding: 0 6px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      font-size: 12px;
+      color: var(--text-secondary);
+      cursor: default;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-btn.active { background: var(--btn-primary-bg); color: var(--btn-primary-txt); border-color: var(--btn-primary-bg); }
+    .page-size-selector {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .page-size-select { height: 26px; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 4px; font-size: 12px; }
+
+    /* ---- 模态弹窗 ---- */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100;
+    }
+    .modal {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      width: 520px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-close { font-size: 16px; color: var(--text-placeholder); cursor: default; }
+    .modal-body  { padding: 20px; }
+    .modal-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    /* ---- 表单 ---- */
+    .form-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .form-label { width: 100px; flex-shrink: 0; font-size: 13px; color: var(--text-label); padding-top: 7px; text-align: right; }
+    .required   { color: var(--text-secondary); font-size: 11px; }
+    .form-input { flex: 1; height: 32px; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 10px; font-size: 13px; }
+    .form-input::placeholder { color: var(--text-placeholder); }
+    .form-select { flex: 1; height: 32px; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 8px; font-size: 13px; }
+
+    /* ---- 空状态 ---- */
+    .empty-state { padding: 60px 20px; text-align: center; color: var(--text-placeholder); }
+    .empty-icon  { font-size: 40px; margin-bottom: 12px; opacity: 0.4; }
+    .empty-text  { font-size: 14px; margin-bottom: 16px; }
+
+    /* ---- 图片/媒体占位块 ---- */
+    .img-placeholder {
+      border: 2px dashed var(--border-dashed);
+      background: var(--surface-alt);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-placeholder);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==========================================
+     【参考组件 1】浏览器顶栏
+     ========================================== -->
+<div class="browser-bar">
+  <div class="browser-dots"><span></span><span></span><span></span></div>
+  <div class="browser-url">http://erp.example.com/finance/discount/detail</div>
+</div>
+
+<!-- ==========================================
+     【参考组件 2】顶部导航栏
+     ========================================== -->
+<nav class="topnav">
+  <div class="topnav-logo">企业管理系统</div>
+  <div class="topnav-links">
+    <div class="topnav-link">首页</div>
+    <div class="topnav-link active">财务管理</div>
+    <div class="topnav-link">采购管理</div>
+    <div class="topnav-link">库存管理</div>
+    <div class="topnav-link">报表中心</div>
+  </div>
+  <div class="topnav-user">
+    <div class="topnav-avatar"></div>
+    张三 ▾
+  </div>
+</nav>
+
+<!-- ==========================================
+     主内容区：侧边栏 + 列表页
+     ========================================== -->
+<div class="content-wrapper">
+
+  <!-- 【参考组件 3】左侧侧边栏导航 -->
+  <aside class="sidebar">
+    <div class="sidebar-section-title">财务管理</div>
+    <div class="sidebar-item"><div class="icon"></div>应收账款</div>
+    <div class="sidebar-item"><div class="icon"></div>应付账款</div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-title">折让管理</div>
+    <div class="sidebar-item active"><div class="icon"></div>折让核算明细</div>
+    <div class="sidebar-item"><div class="icon"></div>折让申请</div>
+    <div class="sidebar-item"><div class="icon"></div>折让审批</div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- 【参考组件 4】面包屑 -->
+    <div class="breadcrumb">
+      <span>财务管理</span>
+      <span class="breadcrumb-sep">›</span>
+      <span>折让管理</span>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">折让核算明细</span>
+    </div>
+
+    <!-- 【参考组件 5】页面标题 + 操作按钮区 -->
+    <div class="page-header">
+      <div>
+        <div class="page-title">折让核算明细</div>
+        <div class="page-title-desc">管理所有折让单据的核算状态和明细数据</div>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-secondary">↓ 导出</button>
+        <button class="btn btn-primary">+ 新建折让</button>
+      </div>
+    </div>
+
+    <!-- 搜索筛选 + Tab + 表格 整合为一个卡片 -->
+    <div class="card">
+
+      <!-- 【参考组件 6】搜索筛选栏 -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <span class="filter-label">单据编号</span>
+          <input class="input input-search" placeholder="请输入单据编号" />
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">客户名称</span>
+          <input class="input input-search" placeholder="请输入客户名称" />
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">折让类型</span>
+          <select class="select">
+            <option>全部类型</option>
+            <option>销售折让</option>
+            <option>采购折让</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">申请日期</span>
+          <div class="date-range">
+            <input class="input input-date" placeholder="开始日期" />
+            <span>—</span>
+            <input class="input input-date" placeholder="结束日期" />
+          </div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:8px;">
+          <button class="btn btn-primary">查询</button>
+          <button class="btn btn-secondary">重置</button>
+        </div>
+      </div>
+
+      <!-- 【参考组件 7】Tab 切换（含数量徽章） -->
+      <div class="tabs">
+        <div class="tab active">全部 <span class="tab-badge">128</span></div>
+        <div class="tab">待审批 <span class="tab-badge">12</span></div>
+        <div class="tab">审批中 <span class="tab-badge">5</span></div>
+        <div class="tab">已核算 <span class="tab-badge">89</span></div>
+        <div class="tab">已驳回 <span class="tab-badge">22</span></div>
+      </div>
+
+      <!-- 【参考组件 8】数据表格 -->
+      <div class="data-table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="checkbox-cell"><div class="checkbox"></div></th>
+              <th>单据编号</th>
+              <th>客户名称</th>
+              <th>折让类型</th>
+              <th>折让金额（元）</th>
+              <th>申请日期</th>
+              <th>审批人</th>
+              <th>单据状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="checkbox-cell"><div class="checkbox"></div></td>
+              <td><span class="table-link">ZR-2024-00128</span></td>
+              <td>上海贸易有限公司</td>
+              <td>销售折让</td>
+              <td style="text-align:right;">¥ 12,500.00</td>
+              <td>2024-03-15</td>
+              <td>李四</td>
+              <td><span class="tag tag-pending">待审批</span></td>
+              <td><span class="table-link">查看</span><span class="table-link">编辑</span><span class="table-link">提交</span></td>
+            </tr>
+            <tr>
+              <td class="checkbox-cell"><div class="checkbox"></div></td>
+              <td><span class="table-link">ZR-2024-00127</span></td>
+              <td>北京科技股份有限公司</td>
+              <td>采购折让</td>
+              <td style="text-align:right;">¥ 8,800.00</td>
+              <td>2024-03-14</td>
+              <td>王五</td>
+              <td><span class="tag tag-success">已核算</span></td>
+              <td><span class="table-link">查看</span><span class="table-link">冲销</span></td>
+            </tr>
+            <tr>
+              <td class="checkbox-cell"><div class="checkbox"></div></td>
+              <td><span class="table-link">ZR-2024-00126</span></td>
+              <td>广州供应链管理有限公司</td>
+              <td>销售折让</td>
+              <td style="text-align:right;">¥ 3,200.00</td>
+              <td>2024-03-13</td>
+              <td>赵六</td>
+              <td><span class="tag">审批中</span></td>
+              <td><span class="table-link">查看</span></td>
+            </tr>
+            <tr>
+              <td class="checkbox-cell"><div class="checkbox"></div></td>
+              <td><span class="table-link">ZR-2024-00125</span></td>
+              <td>深圳采购中心</td>
+              <td>销售折让</td>
+              <td style="text-align:right;">¥ 45,000.00</td>
+              <td>2024-03-12</td>
+              <td>李四</td>
+              <td><span class="tag">已驳回</span></td>
+              <td><span class="table-link">查看</span><span class="table-link">重新提交</span></td>
+            </tr>
+            <tr>
+              <td class="checkbox-cell"><div class="checkbox"></div></td>
+              <td><span class="table-link">ZR-2024-00124</span></td>
+              <td>杭州电子商务有限公司</td>
+              <td>采购折让</td>
+              <td style="text-align:right;">¥ 6,750.00</td>
+              <td>2024-03-11</td>
+              <td>孙七</td>
+              <td><span class="tag tag-success">已核算</span></td>
+              <td><span class="table-link">查看</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 【参考组件 9】分页控件 -->
+      <div class="pagination">
+        <span class="pagination-info">共 128 条记录</span>
+        <span class="page-btn">«</span>
+        <span class="page-btn">‹</span>
+        <span class="page-btn active">1</span>
+        <span class="page-btn">2</span>
+        <span class="page-btn">3</span>
+        <span class="page-btn">…</span>
+        <span class="page-btn">13</span>
+        <span class="page-btn">›</span>
+        <span class="page-btn">»</span>
+        <div class="page-size-selector">
+          每页
+          <select class="page-size-select">
+            <option>10</option>
+            <option selected>20</option>
+            <option>50</option>
+          </select>
+          条
+        </div>
+      </div>
+
+    </div><!-- /card -->
+
+    <!-- ==========================================
+         【参考组件 10】模态弹窗（默认注释，需要时取消注释）
+         在实际线框图中，模态通常不与列表页同时可见，
+         单独生成一张"弹窗状态"截图
+         ==========================================
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          新建折让申请
+          <span class="modal-close">✕</span>
+        </div>
+        <div class="modal-body">
+          <div class="form-row">
+            <label class="form-label">客户名称 <span class="required">*</span></label>
+            <input class="form-input" placeholder="请选择或输入客户名称" />
+          </div>
+          <div class="form-row">
+            <label class="form-label">折让类型 <span class="required">*</span></label>
+            <select class="form-select"><option>请选择折让类型</option><option>销售折让</option><option>采购折让</option></select>
+          </div>
+          <div class="form-row">
+            <label class="form-label">折让金额 <span class="required">*</span></label>
+            <input class="form-input" placeholder="请输入金额（元）" />
+          </div>
+          <div class="form-row">
+            <label class="form-label">折让原因</label>
+            <input class="form-input" placeholder="请描述折让原因（选填）" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary">取消</button>
+          <button class="btn btn-secondary">保存草稿</button>
+          <button class="btn btn-primary">提交审批</button>
+        </div>
+      </div>
+    </div>
+    -->
+
+    <!-- ==========================================
+         【参考组件 11】空状态（无数据时替换表格区域）
+         ==========================================
+    <div class="card" style="margin-top:0;">
+      <div class="empty-state">
+        <div class="empty-icon">☐</div>
+        <div class="empty-text">暂无折让记录</div>
+        <button class="btn btn-primary">+ 新建折让</button>
+      </div>
+    </div>
+    -->
+
+    <!-- ==========================================
+         【参考组件 12】图片/媒体占位块使用示例
+         ==========================================
+    <div class="img-placeholder" style="height:200px;">
+      图片区域 / 附件预览区
+    </div>
+    -->
+
+  </main>
+</div>
+
+</body>
+</html>
