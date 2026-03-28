@@ -1,0 +1,23 @@
+{
+  "eval_id": 2,
+  "eval_name": "cross-file-consistency-review",
+  "prompt": "帮我检查一下 /Users/jsonchen/Development/req-skill-test/skills/req-skill/ 这套 skill 的跨文件一致性，主要看看各个子 skill 的规范是不是对齐的，主编排器的路由有没有遗漏。",
+  "assertions": [
+    {
+      "text": "检查主 SKILL.md 的路由覆盖所有子 skill",
+      "check": "output mentions routing completeness check for main SKILL.md"
+    },
+    {
+      "text": "检查 shared/ 目录中是否有未被引用的文件",
+      "check": "output mentions shared directory file coverage or orphaned files check"
+    },
+    {
+      "text": "比较各子 skill 的已有文件处理菜单一致性",
+      "check": "output compares existing-files handling menus across sub-skills"
+    },
+    {
+      "text": "检查 ISS-ID 追踪链（review→complete→testcase）",
+      "check": "output mentions ISS-ID chain or cross-skill ID tracking"
+    }
+  ]
+}

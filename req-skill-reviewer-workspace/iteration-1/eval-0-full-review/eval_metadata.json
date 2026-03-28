@@ -1,0 +1,27 @@
+{
+  "eval_id": 0,
+  "eval_name": "full-skill-set-review",
+  "prompt": "请帮我全面审查位于 /Users/jsonchen/Development/req-skill-test/skills/req-skill/ 的这套 req-skill 工具集，检查所有子 skill 文件的规范性和质量，输出一份结构化审查报告。",
+  "assertions": [
+    {
+      "text": "报告包含 A-F 六个维度的评分（10分制）",
+      "check": "output contains 6 dimension ratings with numeric scores"
+    },
+    {
+      "text": "Critical / Important / Minor 三级分类均存在",
+      "check": "output contains all three severity sections as distinct headers"
+    },
+    {
+      "text": "每个问题包含文件名、维度标识、问题描述和修复建议",
+      "check": "each issue row references a specific file and provides actionable fix"
+    },
+    {
+      "text": "包含跨文件一致性检查（ISS-ID 链/路由/共享资源）",
+      "check": "output includes cross-file analysis beyond just per-file checks"
+    },
+    {
+      "text": "问题描述客观具体，不使用情绪化表达",
+      "check": "descriptions are factual and specific, not emotional"
+    }
+  ]
+}

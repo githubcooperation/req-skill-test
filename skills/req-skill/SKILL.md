@@ -3,7 +3,7 @@ name: req-skill
 description: >
   需求文档全流程质量工具：审查缺陷、补全信息、生成线框图、生成测试用例、生成流程文档。
   当用户提到"检查需求文档"、"审查PRD"、"需求有什么问题"时触发 req-review；
-  当用户提到"补全需求"、"把缺的信息补上"、"帮我问清楚"时触发 req-complete；
+  当用户提到"补全需求"、"把缺的信息补上"、"帮我问清楚"、"整理需求"、"把采访稿变成PRD"、"根据会议记录写需求"时触发 req-complete；
   当用户提到"生成测试用例"、"出测试case"、"写测试"时触发 req-testcase；
   当用户提到"生成原型"、"画原型"、"出线框图"、"低保真"、"wireframe"、"原型图"时触发 req-wireframe；
   当用户提到"生成流程文档"、"接口说明"、"出流程"、"写接口文档"时触发 req-flowdoc；
@@ -42,7 +42,7 @@ description: >
 - 用户说"检查并补全" → 先执行 req-review，再执行 req-complete
 - 用户说"从头到尾帮我处理" → 依次执行 req-review → req-complete → req-testcase
 - 用户说"检查完直接出测试用例" → 依次执行 req-review → req-testcase（跳过补全）
-- 用户说"全套都来一遍"或"审查到出测试用例全走一遍" → 依次执行 req-review → req-complete → req-wireframe → req-testcase，完成后询问是否还需要生成流程文档
+- 用户说"全套都来一遍"或"审查到出测试用例全走一遍" → 依次执行 req-review → req-complete → req-wireframe → req-testcase，完成后询问是否还需要生成流程文档（req-flowdoc 默认不包含在"全套"中，因为它面向有集成接口需求的项目，并非所有文档都适用）
 - 用户说"审查完补全然后出原型" → 依次执行 req-review → req-complete → req-wireframe
 
 复合意图时，每个阶段完成后告诉用户当前进度，再进入下一个阶段。
@@ -100,6 +100,7 @@ output/
 - `shared/testcase-template.md`：测试用例的输出模板，req-testcase 使用
 - `shared/flow-doc-template.md`：流程说明文档的输出模板，req-flowdoc 使用
 - `shared/wireframe-style.html`：低保真线框图的 HTML/CSS 参考样式，req-wireframe 用于保持风格一致
+- `shared/raw-materials/`：项目原始素材（会议记录、用户故事草稿、需求反馈等），可作为 req-review 和 req-complete 的补充参考背景，非必读，不影响主流程
 
 ## 语言
 

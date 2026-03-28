@@ -45,9 +45,14 @@ description: >
 **文件命名规则**：
 - 格式：`{模块缩写}-{卡片缩写}-{屏幕缩写}.html`
 - 使用小写英文或拼音，空格替换为连字符
-- 示例：`折让管理 > 折让核算明细 > [全部]状态` → `zhekang-hesuan-quanbu.html`
+- 示例：`折让管理 > 折让核算明细 > [全部]状态` → `zherang-hesuan-quanbu.html`
 
-扫描完成后列出清单并**等待用户确认**：
+扫描完成后，**在列出清单之前**，先执行一次浏览器工具可用性探测：尝试用浏览器工具打开任意 URL（如 `about:blank`）。
+
+- 如果工具可用 → 正常继续，在后续第3d步按原流程截图
+- 如果工具不可用 → 在清单末尾附加提示："⚠️ 当前浏览器工具不可用，将跳过截图步骤。HTML 文件生成完毕后，请手动在浏览器中打开并截图，保存至对应 `.png` 路径。"，不再对每个文件重复尝试截图
+
+列出清单并**等待用户确认**：
 
 ```
 找到以下需要生成线框图的位置：
@@ -90,8 +95,11 @@ description: >
 - **无数据场景**：列表页框架 + 空状态组件（替换表格区域）
 
 **不确定时的默认策略**：
-- 企业后台系统 → 默认带侧边栏
-- 面向 C 端的 SaaS 或 App → 默认无侧边栏，顶部导航居中
+
+判断依据（从 PRD 第 1 章背景描述或系统名称中读取）：
+- 含"管理系统"、"后台"、"ERP"、"OA"等关键词 → 企业后台系统，默认带侧边栏
+- 含"App"、"小程序"、"用户端"、"C端"、"SaaS"等关键词 → 面向 C 端，默认无侧边栏，顶部导航居中
+- PRD 中无明确说明 → 默认按企业后台系统处理，并在口头备注中注明假设
 - 一个需求卡片下有多个 Tab → 每个 Tab 对应一个 `{低保真原型图}` 占位符时，只画当前 Tab 激活状态
 
 #### 3c：生成 HTML 文件
@@ -101,20 +109,20 @@ description: >
 **必须遵守的规范**：
 
 1. **CSS 全部内联**：所有样式写在 `<style>` 标签内，禁止 CDN 链接、外部字体引用，支持 `file://` 直接打开
-2. **使用统一 CSS 变量**（照搬自 `shared/wireframe-style.html`，不要修改颜色值）：
+2. **使用统一 CSS 变量**（完整复制以下变量块，不要修改颜色值）：
    ```css
    :root {
      --bg: #f0f0f0;  --surface: #ffffff;  --surface-alt: #f9f9f9;
-     --border: #cccccc;  --border-strong: #aaaaaa;
+     --border: #cccccc;  --border-strong: #aaaaaa;  --border-dashed: #bbbbbb;
      --text-primary: #333333;  --text-secondary: #666666;  --text-placeholder: #aaaaaa;
      --text-label: #555555;
      --btn-primary-bg: #555555;  --btn-primary-txt: #ffffff;
-     --btn-secondary-bg: #eeeeee;  --btn-secondary-txt: #444444;
+     --btn-secondary-bg: #eeeeee;  --btn-secondary-txt: #444444;  --btn-danger-bg: #888888;
      --tag-bg: #e4e4e4;  --tag-border: #c0c0c0;
      --tag-success-bg: #d8d8d8;  --tag-warning-bg: #e8e8e8;
      --nav-bg: #444444;  --nav-txt: #eeeeee;  --nav-active: #666666;
-     --sidebar-active: #e8e8e8;  --header-bg: #eeeeee;
-     --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+     --sidebar-active: #e8e8e8;  --header-bg: #eeeeee;  --row-hover: #f5f5f5;
+     --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);  --shadow-md: 0 2px 8px rgba(0,0,0,0.12);
      --radius: 4px;  --radius-lg: 8px;
      --font: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
    }
@@ -162,13 +170,20 @@ description: >
 
 #### 3d：在浏览器中截图
 
-1. 用 Bash 执行 `pwd`，获取当前绝对路径
-2. 拼接完整 `file://` URL：`file://{绝对路径}/output/wireframes/{文件名}.html`
+1. 用 Bash 执行 `realpath output/wireframes/{文件名}.html`，获取 HTML 文件的绝对路径
+   - 如果 `realpath` 不可用，改用 `readlink -f output/wireframes/{文件名}.html`
+   - 不要使用 `pwd` 拼接路径，因为 shell 工作目录不一定是项目根目录
+2. 拼接完整 `file://` URL：`file://{realpath输出的绝对路径}`
 3. 用浏览器工具打开该 URL（navigate to file:// URL），等待页面完全加载
 4. 调整窗口宽度为 **1440px**，高度足以容纳完整页面（如页面有滚动则截全页）
 5. 截图，保存为 `output/wireframes/{同名}.png`
 
-截图后在对话中简要确认："已生成 `{文件名}.png`，是否继续下一个？"
+**截图后验证**：
+- 确认 PNG 文件存在且大小 > 0
+- 如果 PNG 不存在、大小为 0、或截图只是空白页，说明 file:// 路径有误；重新用 `realpath` 获取路径后再试一次
+- 如果两次均失败，告知用户："截图失败，请手动在浏览器中打开 `{绝对路径}` 并截图保存为 `output/wireframes/{文件名}.png`"，然后跳过该文件继续生成其余线框图
+
+截图成功后在对话中简要确认："已生成 `{文件名}.png`，是否继续下一个？"
 
 如用户对效果不满意，根据反馈修改 HTML 文件，重新截图。
 

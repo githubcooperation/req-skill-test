@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "提及截图步骤中的路径构建方式（realpath 或 file:// URL）",
+      "passed": true,
+      "evidence": "C-3 明确指出 realpath 命令的 cwd 假设问题，提及路径说明块承认 shell 工作目录不定，并建议用 ls output/ 确认 cwd。"
+    },
+    {
+      "text": "提及 HTML 自包含要求（CSS 内联，不依赖外部资源）",
+      "passed": true,
+      "evidence": "亮点第 4 点明确说明「CSS 变量已在 SKILL.md 内联，无需 LLM 自行查找 wireframe-style.html」；M-3 讨论共享样式文件的冗余引用。"
+    },
+    {
+      "text": "提及占位符 {低保真原型图} 的扫描和替换逻辑",
+      "passed": true,
+      "evidence": "I-2 讨论占位符位置的屏幕名称追溯规则（向上找加粗行）；I-3 讨论截图失败时占位符替换分支缺失问题。"
+    },
+    {
+      "text": "审查深度聚焦于 B（流程完整性）和 C（指令清晰度）",
+      "passed": true,
+      "evidence": "各维度评分表格对 B 流程完整性（6.5/10）和 C 指令清晰度（7/10）均有详细子维度拆解，问题条目都标注了 B/C 维度标识。"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

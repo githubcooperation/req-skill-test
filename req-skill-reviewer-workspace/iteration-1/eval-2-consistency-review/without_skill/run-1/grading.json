@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "检查主 SKILL.md 的路由覆盖所有子 skill",
+      "passed": true,
+      "evidence": "C-1「从头到尾帮我处理跳过 req-wireframe」直接讨论主 SKILL.md 的路由完整性问题。"
+    },
+    {
+      "text": "检查 shared/ 目录中是否有未被引用的文件",
+      "passed": false,
+      "evidence": "报告未提及 shared/ 目录的孤立文件检查，C-6 讨论的是同一字段在两处重复定义，而非文件是否被引用。"
+    },
+    {
+      "text": "比较各子 skill 的已有文件处理菜单一致性",
+      "passed": true,
+      "evidence": "C-2「req-testcase 已有文件覆盖选项比 req-wireframe / req-flowdoc 少一个」直接比较了多个子 skill 的已有文件处理菜单。"
+    },
+    {
+      "text": "检查 ISS-ID 追踪链（review→complete→testcase）",
+      "passed": true,
+      "evidence": "C-4「ISS-ID / FIX-ID 跨 skill 编号体系可能不一致」直接讨论 ISS-ID 链的一致性问题。"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "提及截图步骤中的路径构建方式（realpath 或 file:// URL）",
+      "passed": true,
+      "evidence": "P1 提到「用浏览器工具打开该 URL 并截图」的工具依赖问题；P2 提到 output/ 相对路径基准未统一，隐含 file:// URL 构建的路径歧义。"
+    },
+    {
+      "text": "提及 HTML 自包含要求（CSS 内联，不依赖外部资源）",
+      "passed": true,
+      "evidence": "P9 明确讨论 wireframe-style.html 的使用方式，建议「将 <style> 块完整复制到生成的 HTML 中」，体现对 CSS 内联自包含的关注。"
+    },
+    {
+      "text": "提及占位符 {低保真原型图} 的扫描和替换逻辑",
+      "passed": true,
+      "evidence": "P3 讨论占位符前无加粗行时屏幕名称提取逻辑失效；P7 讨论 fallback 路径未传递给替换步骤。"
+    },
+    {
+      "text": "审查深度聚焦于 B（流程完整性）和 C（指令清晰度）",
+      "passed": false,
+      "evidence": "报告按 P1-P9 问题编号组织，无 B/C 维度分析框架，也无明确聚焦于流程完整性与指令清晰度的结构。"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "eval_id": 1,
+  "eval_name": "wireframe-skill-focused-review",
+  "prompt": "我写了一个 req-wireframe/SKILL.md，帮我看看这个子 skill 写得怎么样，有没有流程不完整或指令模糊的地方。文件在 /Users/jsonchen/Development/req-skill-test/skills/req-skill/req-wireframe/SKILL.md",
+  "assertions": [
+    {
+      "text": "提及截图步骤中的路径构建方式（realpath 或 file:// URL）",
+      "check": "output mentions screenshot path construction, realpath, or file:// URL"
+    },
+    {
+      "text": "提及 HTML 自包含要求（CSS 内联，不依赖外部资源）",
+      "check": "output mentions inline CSS, self-contained HTML, or file:// compatibility"
+    },
+    {
+      "text": "提及占位符 {低保真原型图} 的扫描和替换逻辑",
+      "check": "output mentions placeholder scanning or {低保真原型图} replacement"
+    },
+    {
+      "text": "审查深度聚焦于 B（流程完整性）和 C（指令清晰度）",
+      "check": "output gives particular attention to flow completeness and instruction clarity"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[0m
+> build · kimi-k2.5
+[0m
+[0m→ [0mRead docs/prd.md
+[0m→ [0mSkill "req-skill"
+[0m→ [0mRead ../../../.opencode/skills/req-skill/req-testcase/SKILL.md
+[0m✱ [0mGlob "**/req-flowdoc/**"[90m in ../../../.opencode/skills/req-skill · 0 matches[0m
+[0m→ [0mRead ../../../.opencode/skills/req-skill
+让我检查一下 req-skill 的完整文件结构，看是否有 req-flowdoc 子技能：
+目前 req-skill 技能**不支持生成流程文档**。该技能目前只包含以下三项能力：
+
+1. **req-review** - 审查需求文档，输出缺陷清单
+2. **req-complete** - 补全需求文档的缺失信息  
+3. **req-testcase** - 生成测试用例
+
+如果您需要流程文档，建议：
+- 使用其他工具生成
+- 或者我可以基于 PRD 内容，以 markdown 格式手动整理一份业务流程说明
+
+请问您希望我如何处理？或者您是否需要我执行 req-skill 支持的其他功能（如生成测试用例）？

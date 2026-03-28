@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "检查主 SKILL.md 的路由覆盖所有子 skill",
+      "passed": true,
+      "evidence": "第一节 1.1 和 1.2 详细核对了 5 个子 skill 的触发关键词覆盖和路由动作，CON-001 指出关键词不完整，1.2 确认无路由遗漏。"
+    },
+    {
+      "text": "检查 shared/ 目录中是否有未被引用的文件",
+      "passed": true,
+      "evidence": "2.3 共享资源引用一致性节对 5 个共享文件逐一检查引用方，CON-004 发现 req-wireframe 未声明读取 prd-template.md，实际覆盖了孤立文件检查。"
+    },
+    {
+      "text": "比较各子 skill 的已有文件处理菜单一致性",
+      "passed": true,
+      "evidence": "七、未发现问题的检查项中明确确认「所有子 skill 均有'已有文件的处理'章节，行为一致（提示用户选择覆盖/增量/取消）」，证明已对比检查。"
+    },
+    {
+      "text": "检查 ISS-ID 追踪链（review→complete→testcase）",
+      "passed": true,
+      "evidence": "3.1 节核对 req-review→req-complete 的 ISS-ID 格式、status 字段初始值、排序约定；3.2 节核对 req-complete→req-testcase 的 TBD 标记格式 [TBD-{ISS-ID}]。"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

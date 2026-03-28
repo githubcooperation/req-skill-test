@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "报告包含 A-F 六个维度的评分（10分制）",
+      "passed": true,
+      "evidence": "报告末尾有「各维度评分」表格，A 结构规范 8/10、B 流程完整性 7/10、C 指令清晰度 8/10、D 跨文件一致性 7/10、E 用户体验 8/10、F 输出契约 7/10，综合 7.5/10。"
+    },
+    {
+      "text": "Critical / Important / Minor 三级分类均存在",
+      "passed": true,
+      "evidence": "报告有 ### Critical（阻塞性）、### Important（重要）、### Minor（轻微）三个独立章节，各有问题表格。"
+    },
+    {
+      "text": "每个问题包含文件名、维度标识、问题描述和修复建议",
+      "passed": true,
+      "evidence": "问题表格列包含：ID | 文件 | 维度 | 问题描述 | 建议修复，如 C-01 的文件列为 req-testcase/SKILL.md，维度为 B3/D4。"
+    },
+    {
+      "text": "包含跨文件一致性检查（ISS-ID 链/路由/共享资源）",
+      "passed": true,
+      "evidence": "I-01 描述串联执行时 prd-updated.md 不存在的跨技能流问题；I-06 讨论 req-complete 和 req-wireframe 更新 prd-updated.md 时未同步 changelog；C-01 讨论已有文件菜单的跨 skill 一致性。"
+    },
+    {
+      "text": "问题描述客观具体，不使用情绪化表达",
+      "passed": true,
+      "evidence": "所有问题描述使用事实语言，如「口头汇总模板中，TBD 统计的计算说明（括号内的 LLM 指令）混入了面向用户的输出消息」，无情绪化词汇。"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

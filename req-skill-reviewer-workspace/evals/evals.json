@@ -1,0 +1,70 @@
+{
+  "skill_name": "req-skill-reviewer",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "请帮我全面审查位于 /Users/jsonchen/Development/req-skill-test/skills/req-skill/ 的这套 req-skill 工具集，检查所有子 skill 文件的规范性和质量，输出一份结构化审查报告。",
+      "expected_output": "一份包含亮点、Critical/Important/Minor 三级问题清单、各维度评分和修复优先级建议的结构化报告。Critical 问题应聚焦会导致 skill 无法正常工作的问题，Important 问题应聚焦影响用户体验或特定场景的问题。",
+      "assertions": [
+        {
+          "text": "报告包含明确的维度评分（A-F 维度，10分制）",
+          "check": "output contains dimension scores in A-F range with numeric ratings"
+        },
+        {
+          "text": "Critical/Important/Minor 三级分类都存在于报告中",
+          "check": "output contains all three severity levels as distinct sections"
+        },
+        {
+          "text": "每个问题条目包含：文件名、维度标识、问题描述、建议修复",
+          "check": "each issue entry references a specific file and provides actionable fix suggestion"
+        },
+        {
+          "text": "报告包含跨文件一致性检查（不仅逐文件）",
+          "check": "output mentions cross-file consistency issues like orphaned files, routing gaps, or ID chain"
+        },
+        {
+          "text": "问题描述客观具体，避免主观情绪化表达",
+          "check": "issue descriptions use objective language describing facts, not emotional judgments"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "我写了一个 req-wireframe/SKILL.md，帮我看看这个子 skill 写得怎么样，有没有流程不完整或指令模糊的地方。文件在 /Users/jsonchen/Development/req-skill-test/skills/req-skill/req-wireframe/SKILL.md",
+      "expected_output": "专注于 req-wireframe/SKILL.md 的针对性审查，重点检查 B（流程完整性）和 C（指令清晰度）维度，应发现截图步骤、HTML 生成规范、占位符替换逻辑等方面的具体问题或优点。",
+      "assertions": [
+        {
+          "text": "审查覆盖了截图步骤（realpath / file:// URL 构建）",
+          "check": "output mentions screenshot step, file URL construction, or path resolution"
+        },
+        {
+          "text": "审查覆盖了 HTML 自包含要求（CSS 内联）",
+          "check": "output mentions self-contained HTML, inline CSS, or file:// compatibility"
+        },
+        {
+          "text": "审查覆盖了占位符 {低保真原型图} 的扫描和替换逻辑",
+          "check": "output mentions wireframe placeholder scanning or replacement logic"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我检查一下 /Users/jsonchen/Development/req-skill-test/skills/req-skill/ 这套 skill 的跨文件一致性，主要看看各个子 skill 的规范是不是对齐的，主编排器的路由有没有遗漏。",
+      "expected_output": "专注于跨文件一致性的审查，应检查：主 SKILL.md 路由是否覆盖所有子 skill、shared/ 文件是否全部被引用、各子 skill 的已有文件处理菜单是否一致、输出目录声明是否对齐等。",
+      "assertions": [
+        {
+          "text": "检查了主 SKILL.md 的路由覆盖所有子 skill",
+          "check": "output mentions routing completeness in main SKILL.md"
+        },
+        {
+          "text": "检查了 shared/ 目录无孤立文件",
+          "check": "output mentions shared directory file coverage or orphaned files"
+        },
+        {
+          "text": "比较了各子 skill 的已有文件处理菜单一致性",
+          "check": "output compares or mentions consistency of existing-files handling menus across skills"
+        }
+      ]
+    }
+  ]
+}

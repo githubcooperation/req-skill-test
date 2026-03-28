@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "报告包含 A-F 六个维度的评分（10分制）",
+      "passed": false,
+      "evidence": "报告使用 P1/P2 严重度分类和「按来源模块」统计，无 A-F 六个维度评分框架。"
+    },
+    {
+      "text": "Critical / Important / Minor 三级分类均存在",
+      "passed": false,
+      "evidence": "报告使用 P1/P2 两级分类（P1 问题清单 + P2 改进建议），无 Critical/Important/Minor 三级结构。"
+    },
+    {
+      "text": "每个问题包含文件名、维度标识、问题描述和修复建议",
+      "passed": true,
+      "evidence": "P1 问题清单表格有 ID | 模块 | 描述 三列，改进建议章节有具体修复方向，但无维度标识（B3/C4 等）。"
+    },
+    {
+      "text": "包含跨文件一致性检查（ISS-ID 链/路由/共享资源）",
+      "passed": true,
+      "evidence": "A-01 讨论 output/ 路径基准全工具链未统一；R-01 和 S-01 识别 req-review 输出与 issue-schema.md 的不一致。"
+    },
+    {
+      "text": "问题描述客观具体，不使用情绪化表达",
+      "passed": true,
+      "evidence": "描述如「两份文件在此存在不一致：SKILL.md 要求 changelog 有自动跳过表，但 question-strategy.md 未提及 changelog 记录」，客观具体。"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 2,
+    "total": 5,
+    "pass_rate": 0.6
+  }
+}
