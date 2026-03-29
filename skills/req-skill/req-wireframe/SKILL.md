@@ -53,9 +53,10 @@ description: >
 **文件命名规则**：
 - 格式：`{模块缩写}-{卡片缩写}-{屏幕缩写}.html`
 - 使用小写英文或拼音，空格替换为连字符
-- 示例：`折让管理 > 折让核算明细 > [全部]状态` → `zherang-hesuan-quanbu.html`
-- 员工端 > 体检预约 > 预约表单 → `yuangong-yuyue-form.html`
-- 任务管理 > 任务列表 > 全部状态 → `task-list-all.html`
+- 同一次生成的所有文件命名风格统一（全英文或全拼音），参见 `shared/glossary.md`
+- 示例（全英文风格）：`任务管理 > 任务列表 > 全部状态` → `task-list-all.html`
+- 示例（全拼音风格）：`折让管理 > 折让核算明细 > [全部]状态` → `zherang-hesuan-quanbu.html`
+- 示例（全拼音风格）：`员工端 > 体检预约 > 预约表单` → `yuangong-yuyue-form.html`
 
 扫描完成后，**在列出清单之前**，先执行一次浏览器工具可用性探测：
 
