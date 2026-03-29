@@ -64,12 +64,9 @@ description: >
 
 **严格**按 `shared/issue-schema.md` 中定义的结构输出缺陷清单到 `output/review-issues.md`。
 
-**必须遵守的输出格式要求**：
-- 每条缺陷**必须**包含 `id` 字段，格式为 `ISS-{三位序号}`（如 `ISS-001`、`ISS-002`）
-- 每条缺陷**必须**包含 `location` 字段（格式："章节名 > 段落关键词"）
-- 每条缺陷**必须**包含 `status` 字段（初始值为 `open`）
-- 输出格式**必须**使用 Markdown 表格，表头为：`| ID | 模块 | 类型 | 严重度 | 定位 | 描述 | 状态 |`
-- 文件末尾**必须**包含"按模块汇总"部分
+**格式规范**：读取 `shared/issue-schema.md`（用 Glob 定位），严格按其中定义的字段和枚举值生成每行缺陷条目。必填字段：id（ISS-NNN格式）、module、type、severity、location、description、status（初始值 open）。
+
+输出格式使用 Markdown 表格，表头为：`| ID | 模块 | 类型 | 严重度 | 定位 | 描述 | 状态 |`
 
 输出前排序：先按严重程度（P0 > P1 > P2），同级别内按模块归组。
 
