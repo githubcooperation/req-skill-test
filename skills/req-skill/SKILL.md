@@ -53,7 +53,7 @@ description: >
 - 用户说"检查并补全" → 先执行 req-review，再执行 req-complete
 - 用户说"从头到尾帮我处理" → 依次执行 req-review → req-complete → req-testcase
 - 用户说"检查完直接出测试用例" → 依次执行 req-review → req-testcase（跳过补全）
-- 用户说"全套都来一遍"或"审查到出测试用例全走一遍" → 依次执行 req-review → req-complete → req-wireframe → req-testcase，完成后询问是否还需要生成流程文档（req-flowdoc 默认不包含在"全套"中，因为它面向有集成接口需求的项目，并非所有文档都适用）
+- 用户说"全套都来一遍"或"审查到出测试用例全走一遍" → 依次执行 req-review → req-complete → req-wireframe → req-testcase，完成后自动扫描 PRD 第 4 章（集成需求），如果存在集成接口描述则自动执行 req-flowdoc，否则跳过并提示用户
 - 用户说"审查完补全然后出原型" → 依次执行 req-review → req-complete → req-wireframe
 
 复合意图时，每个阶段完成后告诉用户当前进度，再进入下一个阶段。

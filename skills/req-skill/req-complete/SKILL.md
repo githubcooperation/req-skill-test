@@ -254,40 +254,16 @@ TBD
 - 每个 `#### 3.2.x` 块末尾必须有独立一行：`{低保真原型图}`（字面量，原样写入）
 - 仍未确认的字段保留 `[TBD-{ISS-ID}]` 标记
 
-**1.5 写入 prd-updated.md 后，立即运行以下修复脚本（必须在写 changelog.md 之前执行）**
+**1c. 格式校验（在写 changelog 之前执行，替代原 Python 修复脚本）**
 
-```bash
-python3 -c "
-lines = open('output/prd-updated.md').readlines()
-out, buf = [], []
-for ln in lines:
-    if ln.strip() == '---':
-        if any(l.startswith('#') for l in buf) and '{低保真原型图}' not in ''.join(buf):
-            out += ['\n', '{低保真原型图}\n', '\n']
-        buf = []
-    else:
-        buf.append(ln)
-    out.append(ln)
-open('output/prd-updated.md', 'w').writelines(out)
-print('占位符数:', open('output/prd-updated.md').read().count('{低保真原型图}'))
-"
-```
+读取 `req-format-check/SKILL.md` 并执行格式校验流程。该子技能会：
+- 将非标标题转换为 `#### 3.2.N` 格式
+- 在缺少 `{低保真原型图}` 的功能区块中插入占位符
+- 识别多界面场景（Tab/状态/弹窗），确保每个界面各有一个占位符
 
-此脚本会自动扫描文档中每个内容章节（含 `#` 标题），在缺少 `{低保真原型图}` 的章节末尾（`---` 之前）补充该占位符。运行后确认输出"占位符数: N"（N > 0）再继续。
+> **为什么不再使用 Python 修复脚本**：原步骤 1.5 的 Python 脚本只能机械地在 `---` 前补一个占位符，无法识别多界面场景。req-format-check 基于内容语义判断，能力更强。两者功能重叠，统一使用 req-format-check。
 
-**1d. 格式校验（在写 changelog 之前执行）**
-
-读取 `req-format-check/SKILL.md` 并执行格式校验流程，修复以下问题：
-- `#### 3.2.N` 标题格式缺失（需要将非标标题转换为 `#### 3.2.N` 格式）
-- `{低保真原型图}` 占位符数量不足（需要根据卡片内容补足）
-- `<!-- SLOT: -->` 残留标记未替换
-
-格式校验完成后再次运行验证：
-```bash
-grep -c '{低保真原型图}' output/prd-updated.md
-```
-
-确认数量 ≥ 步骤 2B-1 规划的界面数量。
+格式校验完成后，确认输出中的占位符数量 ≥ 功能区块数量。
 
 **2. 变更记录** → `output/changelog.md`（追加模式）
 
