@@ -70,6 +70,14 @@ description: >
 
 输出前排序：先按严重程度（P0 > P1 > P2），同级别内按模块归组。
 
+**写完后自检（逐条确认，不达标立即补充）：**
+1. ✅ 每行 ID 格式为 `ISS-NNN`（三位数字，如 ISS-001）
+2. ✅ `type` 字段值仅来自：ambiguous / missing / contradiction / untestable / incomplete_flow / missing_constraint
+3. ✅ `severity` 字段值仅为 P0 / P1 / P2
+4. ✅ `description` 是一句话问题陈述，不含原文大段引用
+5. ✅ `status` 初始值均为 `open`
+6. ✅ 至少扫描了 PRD 的每个 H2 章节
+
 **严重度判定指南**：
 - 有明确行业默认值的缺失项（如验证码有效期），除非影响核心支付/安全流程，否则定为 P1 而非 P0
 - P0 仅用于：核心业务流程完全缺失、关键数据字段未定义导致无法开发、存在直接矛盾导致无法实现
