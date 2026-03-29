@@ -57,7 +57,12 @@ description: >
 - 员工端 > 体检预约 > 预约表单 → `yuangong-yuyue-form.html`
 - 任务管理 > 任务列表 > 全部状态 → `task-list-all.html`
 
-扫描完成后，**在列出清单之前**，先执行一次浏览器工具可用性探测：尝试用浏览器工具打开任意 URL（如 `about:blank`）。
+扫描完成后，**在列出清单之前**，先执行一次浏览器工具可用性探测：
+
+**浏览器工具优先级**（按顺序尝试，用第一个可用的）：
+1. `playwright_browser_navigate`（Playwright MCP）→ 打开 `about:blank`，能成功即视为可用
+2. Bash 中的 `npx playwright open`（本地 Playwright CLI）
+3. 如果以上均不可用 → 标记为截图不可用
 
 - 如果工具可用 → 正常继续，在后续第3d步按原流程截图
 - 如果工具不可用 → 在清单末尾附加提示："⚠️ 当前浏览器工具不可用，将跳过截图步骤。HTML 文件生成完毕后，请手动在浏览器中打开并截图，保存至对应 `.png` 路径。"，不再对每个文件重复尝试截图

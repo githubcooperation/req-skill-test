@@ -15,8 +15,22 @@
 
 - 优先识别 `#### 3.2.N` 作为需求卡片（req-complete 标准输出格式）
 - 若文档无 `#### 3.2.N` 格式，则以 `### N.x` 作为模块，以 `#### N.x.y` 子章节作为卡片
-- req-testcase 分文件粒度 = 卡片的上一级（即 `###` 或 `##` 模块），一个模块一个文件
+- req-testcase 分文件粒度：
+  - 默认 = 卡片的上一级（即 `###` 或 `##` 模块），一个模块一个文件
+  - 当同一上级模块下卡片 ≥ 5 时，按卡片拆分（每个 `#### 3.2.N` 单独一个文件），避免单文件过大
 - req-wireframe 的 `{低保真原型图}` 对应一个需求卡片（一个页面/屏幕），不是一个功能点
+
+## ISS-ID / FIX-NNN 编号生命周期
+
+| ID 类型 | 生成者 | 消费者 | 生命周期 |
+|---------|--------|--------|---------|
+| `ISS-NNN` | req-review（写入 review-issues.md） | req-complete（读取、处理、更新状态） | req-review → req-complete → changelog，止于补全阶段 |
+| `FIX-NNN` | req-complete（当无前置 review-issues 时自行编号） | 仅 changelog 内部追溯 | 仅存在于 changelog 中，不传递到下游技能 |
+
+**下游技能不消费 ISS/FIX ID**：
+- req-testcase 的"关联需求"字段使用三级格式 `模块名 > 卡片名 > 具体规则描述`，不引用 ISS/FIX ID
+- req-wireframe 基于 `{低保真原型图}` 占位符定位，不消费 changelog
+- req-flowdoc 基于第 4 章内容定位，不消费 changelog
 
 ## ISS-ID → PRD → TC 追踪链路
 
@@ -33,10 +47,21 @@ ISS-002 (open)    →→→   对应修改段落                  →→→   TC
 
 ## 输出文件命名规则
 
-| 子技能 | 输出文件 | 命名规则 | 示例 |
-|--------|---------|---------|------|
-| req-review | `output/review-issues.md` | 固定名 | — |
-| req-complete | `output/prd-updated.md` | 固定名 | — |
-| req-testcase | `output/test-cases/{模块名}.md` | 小写英文/拼音 + 连字符 | `user-register.md` |
-| req-wireframe | `output/wireframes/{模块-卡片-屏幕}.html/.png` | 小写英文/拼音 + 连字符 | `yuyue-liucheng-quanbu.html` |
-| req-flowdoc | `output/flow-docs/{流程名}.md` | 小写英文/拼音 + 连字符 | `user-login.md` |
+**统一规则**：小写 + 连字符，优先使用通用英文词汇，无通用英文名的中文概念使用拼音。
+
+| 概念 | 命名 | 原因 |
+|------|------|------|
+| 用户注册 | `user-register.md` | "register"是通用英文 |
+| 订单管理 | `order-management.md` | "order"是通用英文 |
+| 体检预约 | `tijian-yuyue.md` | "体检预约"无通用英文简称，用拼音 |
+| 折让核算 | `zherang-hesuan.md` | 业务术语，无通用英文，用拼音 |
+
+**禁止**：在同一项目中混用英文和拼音表示同一类概念（如同为业务模块，一个用英文一个用拼音）。
+
+| 子技能 | 输出文件 | 示例 |
+|--------|---------|------|
+| req-review | `output/review-issues.md` | 固定名 |
+| req-complete | `output/prd-updated.md` | 固定名 |
+| req-testcase | `output/test-cases/{模块名}.md` | `user-register.md` |
+| req-wireframe | `output/wireframes/{模块-卡片-屏幕}.html/.png` | `task-list-all.html` |
+| req-flowdoc | `output/flow-docs/{流程名}.md` | `order-payment.md` |
