@@ -112,6 +112,7 @@ output/
 - `shared/flow-doc-template.md`：流程说明文档的输出模板，req-flowdoc 使用
 - `shared/wireframe-style.html`：低保真线框图的 HTML/CSS 参考样式，req-wireframe 用于保持风格一致
 - `shared/raw-materials/`：项目原始素材（会议记录、用户故事草稿、需求反馈等），可作为 req-review 和 req-complete 的补充参考背景，非必读，不影响主流程
+- `shared/glossary.md`：术语表，定义"模块"/"需求卡片"/"功能点"的层级边界及 ISS→PRD→TC 追踪链路，供所有子技能参考
 
 ## 语言
 
