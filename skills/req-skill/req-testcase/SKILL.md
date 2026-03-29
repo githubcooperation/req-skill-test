@@ -9,6 +9,8 @@ description: >
 
 # 测试用例生成
 
+> 📁 **路径速查**：skill 内部文件（shared/ 等）相对于 `req-skill/`；output 文件相对于 workspace 根目录；用 `Glob("**/<filename>")` 定位 shared 文件最可靠。
+
 ## 职责
 
 读取补全后的需求文档，识别模块划分，对照测试类型清单，逐模块生成结构化的测试用例。
@@ -65,7 +67,13 @@ description: >
 
 ### 第四步：加载测试类型清单
 
-> **路径说明**：本文件中所有文件路径均相对于 skill 根目录（即 `req-skill/`），而非当前子目录 `req-skill/req-testcase/`。例如 `reference/testcase-checklist.md` 的完整路径是 `req-skill/reference/testcase-checklist.md`，`shared/testcase-template.md` 的完整路径是 `req-skill/shared/testcase-template.md`。
+> **路径约定**
+> - skill 内部文件（shared/、reference/）：相对于 `req-skill/` 根目录
+>   - 正确：`reference/testcase-checklist.md`、`shared/testcase-template.md`
+> - output 文件：相对于 workspace 根目录（eval 工作目录）
+>   - 正确：`output/prd-updated.md`、`output/test-cases/{模块名}.md`
+>   - 从本目录访问：`../../output/prd-updated.md`
+> - 推荐：用 `Glob("**/testcase-template.md")` 等方式定位 shared 文件
 
 读取 `reference/testcase-checklist.md`（即 `req-skill/reference/testcase-checklist.md`），获取需要覆盖的测试类型列表。
 

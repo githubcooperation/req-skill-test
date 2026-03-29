@@ -1,3 +1,14 @@
+<!-- ============================================================
+  路径约定（所有子技能共同遵守）
+  ① skill 内部文件（shared/、reference/、req-*/）：
+     以本 SKILL 根目录（skills/req-skill/）为基准
+     示例：shared/prd-template.md → skills/req-skill/shared/prd-template.md
+  ② output 文件（output/）：
+     以 workspace 根目录（eval 工作目录）为基准
+     从子技能目录（req-complete/ 等）访问时，路径为 ../../../output/
+  ③ 优先用 Glob("**/prd-template.md") 等方式定位 shared 文件，
+     不要硬写相对路径层级（层级因子技能深度不同而异）
+============================================================ -->
 ---
 name: req-skill
 description: >

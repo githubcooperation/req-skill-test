@@ -9,6 +9,8 @@ description: >
 
 # 低保真线框图生成
 
+> 📁 **路径速查**：skill 内部文件（shared/ 等）相对于 `req-skill/`；output 文件相对于 workspace 根目录；用 `Glob("**/<filename>")` 定位 shared 文件最可靠。
+
 ## 职责
 
 读取 PRD，识别所有 `{低保真原型图}` 占位符，为每个占位符生成一个自包含的 HTML 线框图文件，
@@ -20,7 +22,13 @@ description: >
 
 ### 第一步：确认输入文档
 
-> **路径说明**：本文件中所有文件路径均相对于 skill 根目录（即 `req-skill/`），而非当前子目录 `req-skill/req-wireframe/`。例如 `shared/wireframe-style.html` 的完整路径是 `req-skill/shared/wireframe-style.html`。
+> **路径约定**
+> - skill 内部文件（shared/、reference/）：相对于 `req-skill/` 根目录
+>   - 正确：`shared/wireframe-style.html`
+> - output 文件：相对于 workspace 根目录（eval 工作目录）
+>   - 正确：`output/prd-updated.md`、`output/wireframes/{文件名}.html`
+>   - 从本目录访问：`../../output/prd-updated.md`
+> - 推荐：用 `Glob("**/wireframe-style.html")` 等方式定位 shared 文件
 
 按优先级选择输入文档：
 

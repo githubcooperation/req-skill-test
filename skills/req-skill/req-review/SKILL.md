@@ -9,6 +9,8 @@ description: >
 
 # 需求文档审查
 
+> 📁 **路径速查**：skill 内部文件（shared/ 等）相对于 `req-skill/`；output 文件相对于 workspace 根目录；用 `Glob("**/<filename>")` 定位 shared 文件最可靠。
+
 ## 职责
 
 读取需求文档，系统化地找出其中的质量问题，输出一份结构化的缺陷清单。
@@ -27,7 +29,13 @@ description: >
 
 依次加载以下两份规则：
 
-> **路径说明**：本文件中所有文件路径均相对于 skill 根目录（即 `req-skill/`），而非当前子目录 `req-skill/req-review/`。例如 `reference/business-rules.md` 的完整路径是 `req-skill/reference/business-rules.md`。
+> **路径约定**
+> - skill 内部文件（shared/、reference/）：相对于 `req-skill/` 根目录
+>   - 正确：`req-review/generic-rules.md`、`reference/business-rules.md`、`shared/issue-schema.md`
+> - output 文件：相对于 workspace 根目录（eval 工作目录）
+>   - 正确：`output/review-issues.md`
+>   - 从本目录访问：`../../output/review-issues.md`
+> - 推荐：用 `Glob("**/issue-schema.md")` 等方式定位 shared 文件，无需计算层级
 
 1. **通用规则**：读取 `req-review/generic-rules.md`（即 `req-skill/req-review/generic-rules.md`），这是内置的、不依赖项目的通用审查维度
 2. **项目规则**：读取 `reference/business-rules.md`（即 `req-skill/reference/business-rules.md`，**不是** `req-skill/req-review/reference/business-rules.md`），这是项目团队自定义的业务规则
