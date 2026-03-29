@@ -111,6 +111,10 @@ description: >
 **文件命名规则**：使用小写英文或拼音，连字符分隔。
 示例：`折让核算流程` → `zherang-hesuan.md`，`用户登录接口` → `user-login.md`
 
+- 用户登录接口流程 → `user-login.md`
+- 折让核算流程 → `zherang-hesuan.md`
+- 任务状态变更通知 → `task-status-notify.md`
+
 **格式规范**：读取 `shared/flow-doc-template.md`（用 Glob 定位），章节结构、字段列名、出参固定结构均以该模板为准。不得省略模板中的必填区块（如出参固定字段 code/success/message/timestamp/result）。
 
 #### TBD 标注约定
